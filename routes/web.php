@@ -16,6 +16,10 @@ Route
     ->group(function () {
         Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('index');
         Route::post('/', [App\Http\Controllers\PostController::class, 'store'])->name('store');
+        Route::delete('/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('delete');
+        Route::get('/edit/{post}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit');
+        Route::patch('/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('update');
+
 });
 
 

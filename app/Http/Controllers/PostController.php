@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class PostController extends Controller
 {
@@ -35,9 +37,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        dd($request);
+        $validated = $request->validated();
+        Post::create($validated);
+        return redirect(route('posts.index'))->with('success', 'All data saved successfully!');
+
     }
 
     /**
@@ -59,7 +64,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -69,9 +74,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+        $post->update($validated);
+        return redirect(route('posts.index'))->with('success', 'All changes saved successfully!');
     }
 
     /**
@@ -82,6 +89,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect(route('posts.index'))->with('success', 'Post deleted successfully!');
     }
 }
