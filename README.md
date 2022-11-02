@@ -17,7 +17,7 @@
 - message
   and submit button.
 
-**After click on submit button data should be sent and stored in database.**
+**After click on submit button data will sent and stored in database.**
 **At the bottom of the page implemented place where you can see info about all sent messages:**
 - name, email, message, create date
 
