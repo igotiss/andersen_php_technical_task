@@ -11,7 +11,7 @@
 
 ## Description of general functionality
 
-**Created page where will be form with inputs:**
+**Created page where was implemented form with inputs:**
 - name
 - email
 - message
